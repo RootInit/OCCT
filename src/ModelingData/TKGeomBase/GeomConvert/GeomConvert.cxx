@@ -993,7 +993,8 @@ void GeomConvert::ConcatG1(
         else
         {
           GeomConvert_CompCurveToBSplineCurve C(ArrayOfConcatenated->Value(i));
-          fusion = C.Add(Curve1, ArrayOfToler(j - 1)); // merge of two consecutive curves
+          // Append (After = true), as in ConcatC1, so that a closed group keeps its start.
+          fusion = C.Add(Curve1, ArrayOfToler(j - 1), true); // merge of two consecutive curves
           if (!fusion)
           {
             throw Standard_ConstructionError("GeomConvert Concatenation Error");
