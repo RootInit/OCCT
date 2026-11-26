@@ -1139,7 +1139,9 @@ void Geom2dConvert::ConcatG1(
         else
         {
           Geom2dConvert_CompCurveToBSplineCurve C(ArrayOfConcatenated->Value(i));
-          fusion = C.Add(Curve1, ArrayOfToler(j - 1)); // fusion de deux courbes adjacentes
+          // Append (After = true): when the group is closed, the last curve matches both ends
+          // and the default would prepend it, rotating the start of the result.
+          fusion = C.Add(Curve1, ArrayOfToler(j - 1), true); // fusion de deux courbes adjacentes
 
           if (!fusion)
           {
@@ -1450,7 +1452,10 @@ void Geom2dConvert::ConcatC1(
         else
         {
           Geom2dConvert_CompCurveToBSplineCurve C(ArrayOfConcatenated->Value(i));
-          fusion = C.Add(Curve1, ArrayOfToler(j - 1)); // fusion de deux courbes adjacentes
+          // Append (After = true), as in GeomConvert::ConcatC1: when the group is closed, the last
+          // curve matches both ends and the default would prepend it, rotating the start of the
+          // result away from the start of ArrayOfCurves(index).
+          fusion = C.Add(Curve1, ArrayOfToler(j - 1), true); // fusion de deux courbes adjacentes
           if (!fusion)
           {
             throw Standard_ConstructionError("Geom2dConvert Concatenation Error");

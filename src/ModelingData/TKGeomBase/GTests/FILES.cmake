@@ -65,6 +65,7 @@ set(OCCT_TKGeomBase_GTests_FILES
   GeomProjLib_Test.cxx
   GeomConvert_CompCurveToBSplineCurve_Test.cxx
   Geom2dConvert_CompCurveToBSplineCurve_Test.cxx
+  Geom2dConvert_Test.cxx
   GeomConvert_Test.cxx
   GeomLib_Test.cxx
   GeomLib_CheckCurveOnSurface_Test.cxx
